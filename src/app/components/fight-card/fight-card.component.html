@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="card-body">
+    <form
+      class="row row-cols-auto g-1 align-items-center"
+      (ngSubmit)="addEnemy()"
+    >
+      <div class="col-12">
+        <input
+          [(ngModel)]="enemyName"
+          class="form-control form-control-sm"
+          placeholder="Nom"
+          name="name"
+        />
+      </div>
+      <div class="col-12">
+        <input
+          type="number"
+          [(ngModel)]="enemyDex"
+          class="form-control form-control-sm"
+          placeholder="Dextérité"
+          name="dex"
+        />
+      </div>
+      <div class="col-12">
+        <input
+          type="number"
+          [(ngModel)]="enemySta"
+          class="form-control form-control-sm"
+          placeholder="Endurance"
+          name="sta"
+        />
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-sm btn-outline-primary">
+          Ajouter
+        </button>
+      </div>
+    </form>
+  </div>
+  <table
+    class="table table-sm"
+    *ngIf="fight.enemies && fight.enemies.length > 0"
+  >
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Habileté</th>
+        <th>Endurance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enemy of fight.enemies">
+        <td>{{ enemy.name }}</td>
+        <td>{{ enemy.dexterity.points }}</td>
+        <td>{{ enemy.stamina.points }}</td>
+        <td>
+          <!-- <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="fight.addRound(enemy)"
+            [disabled]="!enemy.isAlive"
+          >
+            Attaquer
+          </button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-sm" *ngIf="fight.rounds && fight.rounds.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>J. FA</th>
+        <th>Ennemi</th>
+        <th>E. FA</th>
+        <th>Résultat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let round of fight.rounds">
+        <td>{{ round.id + 1 }}</td>
+        <td>{{ round.playerFightPower }}</td>
+        <td>{{ round.enemyName }}</td>
+        <td>{{ round.enemyFightPower }}</td>
+        <td>{{ round.result }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

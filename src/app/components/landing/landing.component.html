@@ -1,0 +1,59 @@
+<div class="col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">Bienvenue aventurier !</h1>
+      <div class="col-lg-10 fs-4">
+        <p>
+          Ce site se veut être un outil pour les lecteurs de "Livre dont vous
+          êtes le héro".
+        </p>
+        <p>
+          Il a été construit en se basant sur la série des "Défis
+          Fanstatistiques".
+        </p>
+        <small class="text-muted">Site en construction</small>
+      </div>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <h4>Commencez une nouvelle aventure !</h4>
+      <form
+        class="p-4 p-md-5 border rounded-3 bg-light"
+        (ngSubmit)="startGame()"
+      >
+        <div class="mb-3">
+          <label for="gameNameIpt">Nom de la partie</label>
+          <input
+            [(ngModel)]="gameName"
+            class="form-control"
+            id="gameNameIpt"
+            placeholder="Nom de la partie"
+            name="gameName"
+          />
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+          Commencer
+        </button>
+      </form>
+
+      <div *ngIf="games && games.length > 0">
+        <h4>Ou bien poursuivez une autre !</h4>
+        <form
+          class="p-4 p-md-5 border rounded-3 bg-light"
+          (ngSubmit)="startGame()"
+        >
+          <select
+            class="form-select"
+            (ngModelChange)="selectedGameChanged($event)"
+            [ngModel]="selectedGame"
+            name="selectedGame"
+          >
+            <option value="" [selected]="true">Sélectionner une aventure</option>
+            <option *ngFor="let game of games" [ngValue]="game.name">
+              {{ game.name }}
+            </option>
+          </select>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

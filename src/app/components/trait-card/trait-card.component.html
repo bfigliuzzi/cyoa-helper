@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ trait.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      Total de départ : {{ trait.startingPoints }}
+    </li>
+    <li class="list-group-item">
+      Points : {{ trait.points }}
+      <button
+        *ngIf="trait.startingPoints !== trait.points"
+        class="btn btn-outline-danger btn-sm"
+        (click)="trait.points = trait.startingPoints"
+      >
+        Reset
+      </button>
+    </li>
+    <li class="list-group-item">
+      <form class="row row-cols-auto g-1 align-items-center">
+        <label for="{{ inputId }}">Nombre de points à ajouter/enlever</label>
+        <div class="input-group input-group-sm">
+          <input
+            id="{{ inputId }}"
+            type="number"
+            [(ngModel)]="points"
+            class="form-control form-control-sm"
+            name="points"
+          />
+          <button
+            class="btn btn-outline-secondary btn-sm"
+            (click)="trait.points = trait.points + points"
+          >
+            {{ points > 0 ? "+" : "-" }}
+          </button>
+        </div>
+      </form>
+    </li>
+  </ul>
+</div>

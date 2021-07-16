@@ -1,0 +1,29 @@
+<h3>Combats</h3>
+<button class="btn btn-primary" (click)="addFight()">Ajouter un combat</button>
+
+<div class="accordion" id="fightsSectionAccordion">
+  <div *ngFor="let fight of game.fights; index as index" class="accordion-item">
+    <div class="accordion-header" id="{{ 'heading' + index }}">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        attr.data-bs-target="{{ '#collapse' + index }}"
+        aria-expanded="true"
+        attr.aria-controls="{{ 'collapse' + index }}"
+      >
+        Combat n° {{ index + 1 }}
+      </button>
+    </div>
+    <div
+      id="{{ 'collapse' + index }}"
+      class="accordion-collapse collapse"
+      attr.aria-labelledby="{{ 'heading' + index }}"
+      data-bs-parent="#fightsSectionAccordion"
+    >
+      <div class="accordion-body">
+        <fight-card [fight]="fight"></fight-card>
+      </div>
+    </div>
+  </div>
+</div>
